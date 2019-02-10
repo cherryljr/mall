@@ -19,7 +19,7 @@
     id, username, password, email, phone, question, answer, role, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from mall_user
     where id = #{id,jdbcType=INTEGER}
@@ -29,12 +29,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mall.pojo.User" >
-    insert into mall_user (id, username, password, 
-      email, phone, question, 
-      answer, role, create_time, 
+    insert into mall_user (id, username, password,
+      email, phone, question,
+      answer, role, create_time,
       update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
       #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
       now())
   </insert>
@@ -151,4 +151,54 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+    UPDATE mall_user
+    set password = #{newPassword}, update_time = now()
+    where username = #{username}
+  </update>
+
+  <select id="checkUsername" resultType="java.lang.Integer" parameterType="string" >
+  select count(1) from mall_user
+  where username = #{username}
+  </select>
+
+  <select id="checkEmail" resultType="java.lang.Integer" parameterType="string" >
+    select count(1) from mall_user
+    where email = #{email}
+  </select>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from mall_user
+    where username = #{username}
+    and password = #{password}
+  </select>
+
+  <select id="selectQuestionByUsername" resultType="java.lang.String" parameterType="string">
+    SELECT question from mall_user WHERE username = #{username}
+  </select>
+
+  <select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
+    SELECT count(1) FROM mall_user
+    WHERE username = #{username}
+    and question = #{question}
+    and answer = #{answer}
+  </select>
+
+  <select id="checkPassword" resultType="java.lang.Integer" parameterType="map">
+    SELECT count(1)
+    from mall_user
+    WHERE id = #{uerId}
+    and password = #{password}
+  </select>
+
+  <select id="checkEmailByUserId" resultType="java.lang.Integer" parameterType="map">
+    SELECT count(1)
+    FROM mall_user
+    WHERE email = #{email}
+    and id != #{userId}
+  </select>
+
 </mapper>
