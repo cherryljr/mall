@@ -179,4 +179,12 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
     }
+
+    // 校验用户是否是管理员
+    public ServerResponse checkAdminRole(User user) {
+        if (null != user && user.getRole().intValue() == Constant.Role.ADMIN) {
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
+    }
 }
