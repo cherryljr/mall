@@ -13,6 +13,11 @@ public class Constant {
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_asc", "price_desc");
     }
 
+    public interface Cart {
+        int CHECKED = 1; // 选中状态
+        int UNCHECKED = 0; // 未选中状态
+    }
+
     public interface Role {
         int CUSTOMER = 0; // 普通用户
         int ADMIN = 1; // 管理员

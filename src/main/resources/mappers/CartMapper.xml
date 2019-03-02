@@ -116,4 +116,13 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectCartByUserIdProductId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mall_cart
+    WHERE user_id = #{userId}
+    and product_id = #{productId}
+  </select>
+
 </mapper>
