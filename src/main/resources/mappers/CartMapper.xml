@@ -140,9 +140,11 @@
     </select>
 
     <delete id="deleteByUserIdProductIds" parameterType="map">
-        DELETE FROM mall_cart WHERE user_id = #{userId}
+        delete from mall_cart
+        where user_id = #{userId}
         <if test="productIdList != null">
-            <foreach collection="productIdList" item="item" index="index" open="," separator="," close=")">
+            and product_id in
+            <foreach collection="productIdList" item="item" index="index" open="(" separator="," close=")">
                 #{item}
             </foreach>
         </if>
