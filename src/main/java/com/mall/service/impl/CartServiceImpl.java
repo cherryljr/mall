@@ -14,14 +14,10 @@ import com.mall.util.BigDecimalUtil;
 import com.mall.util.PropertiesUtil;
 import com.mall.vo.CartProductVo;
 import com.mall.vo.CartVo;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
