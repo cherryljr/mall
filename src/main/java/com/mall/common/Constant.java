@@ -63,6 +63,15 @@ public class Constant {
             this.value = value;
         }
 
+        public static OrderStatusEnum codeOf(int code) {
+            for (OrderStatusEnum orderStatusEnum : values()) {
+                if (orderStatusEnum.getCode() == code) {
+                    return orderStatusEnum;
+                }
+            }
+            throw new RuntimeException("没有找到对应的枚举信息");
+        }
+
         public String getValue() {
             return value;
         }
@@ -125,7 +134,7 @@ public class Constant {
                     return paymentTypeEnum;
                 }
             }
-            throw new RuntimeException("没有找到对应的枚举");
+            throw new RuntimeException("没有找到对应的枚举信息");
         }
 
     }
